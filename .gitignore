@@ -1,6 +1,17 @@
-# Ignore project documentation
-.vscode/
-.venv/
-__pycache__/
-
+# Local environment and editor settings
 .env
+.venv/
+.vscode/
+
+# Python caches and tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+
+# Local vector store / runtime data
+.chroma/
+*.sqlite3
+
+# macOS
+.DS_Store

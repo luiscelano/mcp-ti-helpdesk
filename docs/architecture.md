@@ -128,6 +128,18 @@ Responsabilidades:
 - Construir secuencias válidas de acciones.
 - Respetar precondiciones y dependencias.
 
+### Implementación de Servidor MCP
+
+El servidor MCP se implementa con FastMCP en:
+
+- mcp_server/server.py
+
+Características de implementación:
+
+- Entry point único para ejecución local y Claude Desktop.
+- Registro de herramientas mediante decoradores @mcp.tool().
+- Transporte stdio para interoperabilidad con Claude Desktop.
+
 ---
 
 # 5. Capa de Seguridad
@@ -286,12 +298,11 @@ El proceso de ingestión se ejecutará una sola vez durante la preparación del 
 
 ## Ingestión Documental
 
-Los documentos PDF proporcionados por el proyecto serán procesados para:
+Los documentos del archivo data/archivo1_documentos.json serán procesados para:
 
-1. Extraer texto.
-2. Dividir contenido en fragmentos.
-3. Generar embeddings.
-4. Almacenar embeddings en ChromaDB.
+1. Validar estructura JSON de entrada.
+2. Generar embeddings por documento completo (sin chunking).
+3. Almacenar embeddings en ChromaDB.
 
 Flujo:
 
@@ -410,7 +421,7 @@ Formato esperado:
 | Vector Database       | ChromaDB              |
 | Embeddings            | sentence-transformers |
 | Grafo de Conocimiento | Neo4j Aura            |
-| Procesamiento PDF     | PyMuPDF               |
+| Procesamiento PDF     | PyMuPDF (opcional)    |
 | Configuración         | python-dotenv         |
 | Testing               | pytest                |
 

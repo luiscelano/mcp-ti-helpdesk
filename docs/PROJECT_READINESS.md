@@ -175,3 +175,32 @@ La preparacion del proyecto depende principalmente de cuatro ejes obligatorios:
 4. Seguridad y planificador validados contra especificaciones.
 
 Con los elementos obligatorios completados y los simulables preparados localmente, el proyecto puede entrar a implementacion y demostracion con riesgo controlado dentro de la ventana academica.
+
+## Riesgos Residuales Abiertos Priorizados
+
+Los siguientes riesgos permanecen abiertos al cierre de F6-T03 y se priorizan para seguimiento operativo.
+
+| Prioridad | Riesgo residual abierto                                                  | Impacto potencial                                                         | Mitigacion inmediata                                                                      | Plan post-entrega                                                                                                      |
+| --------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| P0        | Indisponibilidad de Neo4j Aura durante demo o pruebas finales            | Degradacion de GraphRAG y perdida de evidencia relacional en la respuesta | Validar conectividad al inicio de cada ejecucion y mantener prueba de salud previa a demo | Semana 1 post-entrega: implementar reintentos con backoff y fallback controlado sin romper contrato MCP                |
+| P0        | Regresion en gate de seguridad que permita bypass malicioso              | Incumplimiento de politicas y riesgo de respuestas inseguras              | Ejecutar suite SEC y escenarios maliciosos antes de cada presentacion                     | Semana 1 post-entrega: ampliar catalogo de patrones de prompt injection y agregar pruebas adversariales parametrizadas |
+| P1        | Deriva de relevancia semantica en RAG por cambios de embeddings o corpus | Respuestas incompletas o con baja precision documental                    | Congelar modelo y ejecutar regresion RAG en cada cambio de ingesta                        | Semana 2 post-entrega: incorporar metrica de precision por categoria y umbrales minimos de aceptacion                  |
+| P1        | Cobertura limitada de rutas complejas de planificacion                   | Planes incompletos o degradados en casos no nominales                     | Mantener prueba de escenario complejo con trazabilidad de stage_errors                    | Semana 2 post-entrega: expandir matriz de casos PLAN con variantes de precondiciones y costos                          |
+| P2        | Trazabilidad operativa insuficiente para auditoria temporal              | Mayor tiempo de diagnostico en incidentes reales                          | Registrar evidencias de corrida (scripts PASS y salidas de pruebas) por fase              | Semana 3 post-entrega: consolidar logging estructurado con identificador de ejecucion por solicitud                    |
+
+Criterio de seguimiento:
+
+- Cada riesgo abierto debe tener responsable y fecha objetivo en el primer ciclo post-entrega.
+- Los riesgos P0 deben mitigarse antes de cualquier ampliacion funcional fuera del MVP.
+
+## Validacion Final de Consistencia Documental (F6-T04)
+
+Resultado de validacion:
+
+- Sin contradicciones criticas entre docs/architecture.md, docs/specifications.md y docs/IMPLEMENTATION_PLAN.md.
+- Regla de seguridad global consistente: ninguna solicitud bloqueada debe avanzar a RAG/GraphRAG.
+- Ingesta documental consistente en los documentos de arquitectura y plan: fuente data/archivo1_documentos.json y estrategia sin chunking.
+
+Observacion de cierre:
+
+- La referencia a procesamiento PDF queda como capacidad opcional y no altera el flujo minimo definido por especificaciones.
