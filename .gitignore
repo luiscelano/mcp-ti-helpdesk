@@ -1,5 +1,4 @@
 # Ignore project documentation
-/docs/
 .vscode/
 .venv/
 __pycache__/
